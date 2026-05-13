@@ -261,8 +261,15 @@ function ProductList({ onHomeClick }) {
             ...prevState,
             [product.name]: true
         }))
-        const calculateTotalQuantity = () => { return CartItems ? CartItems.reduce((total, item) => total + item.quantity, 0) : 0; };
+       // Reset the added to cart indicator after 2 seconds
+       setTimeout(() => {
+        setAddedToCart((prevState) => ({
+            ...prevState,
+            [product.name]: false
+        }));
+    }, 2000);
     }
+    
     return (
         <div>
             <div className="navbar" style={styleObj}>
